@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KURTYARD — Your Neighborhood Pickleball Court</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+        :root {
+            --navy: #1a2a4a;
+            --navy-dark: #0f1a30;
+            --blue: #3a7bd5;
+            --light-blue: #7ec8e3;
+            --sky: #b8d4e8;
+            --white: #ffffff;
+            --off-white: #f0f4f8;
+            --pink: #e8728a;
+            --pink-light: #f4a0b0;
+            --gray: #6b7b8d;
+            --court-blue: #5ba3d9;
+            --court-gray: #c8d0d8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 42, 74, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 0 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav-logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--sky);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--pink);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--pink) !important;
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700 !important;
+            transition: transform 0.3s, box-shadow 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(232, 114, 138, 0.4);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* ===== HOME / HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 40%, var(--blue) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image:
+                radial-gradient(circle at 20% 50%, var(--white) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, var(--white) 1px, transparent 1px),
+                radial-gradient(circle at 60% 80%, var(--white) 1px, transparent 1px);
+            background-size: 60px 60px, 80px 80px, 40px 40px;
+        }
+
+        .hero-court-lines {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            opacity: 0.08;
+        }
+
+        .hero-court-lines::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 100%;
+            border: 3px solid var(--white);
+            border-bottom: none;
+        }
+
+        .hero-court-lines::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 60%;
+            background: var(--white);
+        }
+
+        .floating-ball {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatBall 6s ease-in-out infinite;
+        }
+
+        .floating-ball:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-ball:nth-child(2) { top: 60%; left: 85%; animation-delay: 2s; width: 14px; height: 14px; }
+        .floating-ball:nth-child(3) { top: 30%; left: 70%; animation-delay: 4s; width: 10px; height: 10px; }
+        .floating-ball:nth-child(4) { top: 70%; left: 20%; animation-delay: 1s; width: 16px; height: 16px; }
+
+        @keyframes floatBall {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(232, 114, 138, 0.2);
+            border: 1px solid var(--pink);
+            color: var(--pink-light);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-logo-container {
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-logo-svg {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: var(--light-blue);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--pink);
+            margin: 1rem auto;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--sky);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn-primary {
+            background: var(--pink);
+            color: var(--white);
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(232, 114, 138, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232, 114, 138, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 40px;
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--light-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--light-blue);
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--blue), var(--pink));
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            color: var(--pink);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--pink);
+            margin: 1rem auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(26, 42, 74, 0.15);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--navy);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(26, 42, 74, 0.3);
+        }
+
+        .about-image-badge span {
+            color: var(--pink);
+        }
+
+        .about-text h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--blue), var(--light-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--navy);
+        }
+
+        /* ===== AMENITIES ===== */
+        .amenities {
+            padding: 5rem 2rem;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .amenities .section-title {
+            color: var(--white);
+        }
+
+        .amenities .section-label {
+            color: var(--pink-light);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .amenity-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .amenity-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+            border-color: var(--pink);
+        }
+
+        .amenity-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .amenity-card h4 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--white);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .amenity-card p {
+            color: var(--sky);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ===== BOOK NOW SECTION ===== */
+        .booking {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .booking-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .booking-info {
+            position: sticky;
+            top: 100px;
+        }
+
+        .booking-info h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .booking-info p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid #e8ecf0;
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .pricing-card:hover, .pricing-card.active {
+            border-color: var(--blue);
+            box-shadow: 0 4px 20px rgba(58, 123, 213, 0.15);
+        }
+
+        .pricing-card.active {
+            border-color: var(--pink);
+        }
+
+        .pricing-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-emoji {
+            font-size: 1.8rem;
+        }
+
+        .pricing-name {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1rem;
+        }
+
+        .pricing-duration {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .pricing-price {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .booking-form-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(26, 42, 74, 0.1);
+            padding: 2.5rem;
+            border: 1px solid #e8ecf0;
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--off-white);
+        }
+
+        .form-header h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+        }
+
+        .form-header p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--navy);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: var(--off-white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.1);
+            background: var(--white);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .time-slot {
+            padding: 10px 8px;
+            border: 2px solid #e0e6ed;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--off-white);
+            color: var(--navy);
+        }
+
+        .time-slot:hover {
+            border-color: var(--blue);
+            background: rgba(58, 123, 213, 0.05);
+        }
+
+        .time-slot.selected {
+            background: var(--blue);
+            color: var(--white);
+            border-color: var(--blue);
+        }
+
+        .time-slot.unavailable {
+            opacity: 0.4;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .booking-summary {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+            padding-top: 0.8rem;
+            border-top: 2px solid #d0d8e0;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .summary-label {
+            color: var(--gray);
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--pink), #d4607a);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Oswald', sans-serif;
+            box-shadow: 0 4px 20px rgba(232, 114, 138, 0.3);
+        }
+
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 114, 138, 0.5);
+        }
+
+        .btn-book:active {
+            transform: translateY(0);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy-dark);
+            padding: 3rem 2rem 1.5rem;
+            color: var(--sky);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--sky);
+            opacity: 0.7;
+        }
+
+        .footer h4 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--white);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--sky);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--pink-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.5;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 26, 48, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            animation: modalIn 0.4s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .modal h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--blue);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .booking-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-info {
+                position: static;
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--navy-dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+                letter-spacing: 3px;
+            }
+
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .booking-form-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <div class="nav-logo-icon">🏓</div>
+                <span class="nav-logo-text">KURTYARD</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#booking" class="nav-cta">Reserve Court</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME / HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-court-lines"></div>
+        <div class="floating-ball"></div>
+        <div class="floating-ball"></div>
+        <div class="floating-ball"></div>
+        <div class="floating-ball"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">🎉 Now Open — Book Your Court Today!</div>
+
+            <div class="hero-logo-container">
+                <svg class="hero-logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer circle -->
+                    <circle cx="100" cy="90" r="85" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.3"/>
+                    <!-- Court line -->
+                    <line x1="30" y1="130" x2="170" y2="130" stroke="#ffffff" stroke-width="2" opacity="0.2"/>
+                    <!-- Net -->
+                    <line x1="100" y1="100" x2="100" y2="140" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                    <!-- Player 1 silhouette -->
+                    <circle cx="65" cy="75" r="8" fill="#ffffff" opacity="0.6"/>
+                    <path d="M55 85 L75 85 L72 110 L58 110 Z" fill="#ffffff" opacity="0.4"/>
+                    <line x1="55" y1="90" x2="40" y2="100" stroke="#ffffff" stroke-width="3" opacity="0.5" stroke-linecap="round"/>
+                    <line x1="75" y1="90" x2="90" y2="85" stroke="#ffffff" stroke-width="3" opacity="0.5" stroke-linecap="round"/>
+                    <!-- Player 2 silhouette -->
+                    <circle cx="135" cy="75" r="8" fill="#ffffff" opacity="0.6"/>
+                    <path d="M125 85 L145 85 L142 110 L128 110 Z" fill="#ffffff" opacity="0.4"/>
+                    <line x1="145" y1="90" x2="160" y2="100" stroke="#ffffff" stroke-width="3" opacity="0.5" stroke-linecap="round"/>
+                    <line x1="125" y1="90" x2="110" y2="85" stroke="#ffffff" stroke-width="3" opacity="0.5" stroke-linecap="round"/>
+                    <!-- Ball -->
+                    <circle cx="100" cy="70" r="10" fill="#e8728a" opacity="0.8"/>
+                    <circle cx="97" cy="67" r="2" fill="#ffffff" opacity="0.5"/>
+                    <circle cx="103" cy="72" r="2" fill="#ffffff" opacity="0.5"/>
+                    <circle cx="98" cy="73" r="2" fill="#ffffff" opacity="0.5"/>
+                    <!-- Text -->
+                    <text x="100" y="165" text-anchor="middle" font-family="Oswald, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="4">KURTYARD</text>
+                    <text x="100" y="180" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="7" fill="#7ec8e3" letter-spacing="3">YOUR NEIGHBORHOOD COURT</text>
+                </svg>
+            </div>
+
+            <h1>KURTYARD</h1>
+            <div class="hero-tagline">Your Neighborhood Court</div>
+            <div class="hero-divider"></div>
+            <p>Premium pickleball courts nestled in a tropical paradise. Whether you're a beginner or a seasoned player, KURTYARD is your go-to spot for fun, fitness, and community.</p>
+
+            <div class="hero-buttons">
+                <a href="#booking" class="btn-primary">🏓 Book a Court</a>
+                <a href="#about" class="btn-secondary">Learn More ↓</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Courts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6AM</div>
+                    <div class="stat-label">Opens Daily</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">₱200</div>
+                    <div class="stat-label">Per Hour</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Discover Us</div>
+                <h2 class="section-title">About KURTYARD</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1622278647429-71bc97f904a8?w=800&q=80" alt="KURTYARD Pickleball Court"
+                             onerror="this.style.background='linear-gradient(135deg, #5ba3d9, #c8d0d8)'; this.style.height='400px'; this.alt='Pickleball Court';">
+                    </div>
+                    <div class="about-image-badge">
+                        Est. <span>2026</span>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <h3>More Than Just a Court — It's a Community</h3>
+                    <p>KURTYARD is your neighborhood pickleball destination, built for players of all levels. Set against a backdrop of swaying palms and tropical greenery, our courts offer a unique playing experience that combines sport with serenity.</p>
+                    <p>Whether you're dropping in for a casual rally, hosting a friendly tournament, or looking to improve your game, KURTYARD has everything you need. Our well-maintained courts, quality equipment, and welcoming atmosphere make every visit a great one.</p>
+
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon"></div>
+                            <div class="feature-text">Tropical Setting</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"></div>
+                            <div class="feature-text">Night Lighting</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🏓</div>
+                            <div class="feature-text">Pro Courts</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🅿️</div>
+                            <div class="feature-text">Free Parking</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMENITIES -->
+    <section class="amenities">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">What We Offer</div>
+                <h2 class="section-title">Court Amenities</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <div class="amenity-icon">🎾</div>
+                    <h4>Pro-Grade Courts</h4>
+                    <p>Regulation-size courts with premium surface for optimal play and safety.</p>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">🌙</div>
+                    <h4>Night Play</h4>
+                    <p>Floodlit courts so you can enjoy pickleball even after the sun goes down.</p>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">🏠</div>
+                    <h4>Rest Area</h4>
+                    <p>Comfortable seating and shaded areas to relax between matches.</p>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">📱</div>
+                    <h4>Easy Booking</h4>
+                    <p>Reserve your court online in seconds — no phone calls needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK NOW SECTION -->
+    <section class="booking" id="booking">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Reserve Your Spot</div>
+                <h2 class="section-title">Book Your Court</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="booking-wrapper">
+                <!-- Left: Info & Pricing -->
+                <div class="booking-info">
+                    <h3>Simple & Transparent Pricing</h3>
+                    <p>Choose your session length and pick a time that works for you. Walk-ins are welcome, but booking ahead guarantees your court!</p>
+
+                    <div class="pricing-cards">
+                        <div class="pricing-card active" onclick="selectPricing(this, 200)">
+                            <div class="pricing-left">
+                                <div class="pricing-emoji">⏱️</div>
+                                <div>
+                                    <div class="pricing-name">1 Hour Session</div>
+                                    <div class="pricing-duration">Standard play time</div>
+                                </div>
+                            </div>
+                            <div class="pricing-price">₱200</div>
+                        </div>
+                        <div class="pricing-card" onclick="selectPricing(this, 350)">
+                            <div class="pricing-left">
+                                <div class="pricing-emoji"></div>
+                                <div>
+                                    <div class="pricing-name">2 Hour Session</div>
+                                    <div class="pricing-duration">Save ₱50</div>
+                                </div>
+                            </div>
+                            <div class="pricing-price">₱350</div>
+                        </div>
+                        <div class="pricing-card" onclick="selectPricing(this, 500)">
+                            <div class="pricing-left">
+                                <div class="pricing-emoji"></div>
+                                <div>
+                                    <div class="pricing-name">3 Hour Session</div>
+                                    <div class="pricing-duration">Save ₱100 — Best Value!</div>
+                                </div>
+                            </div>
+                            <div class="pricing-price">₱500</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Booking Form -->
+                <div class="booking-form-card">
+                    <div class="form-header">
+                        <h3>📋 Reservation Details</h3>
+                        <p>Fill in your info and pick your preferred time slot</p>
+                    </div>
+
+                    <form id="bookingForm" onsubmit="handleBooking(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="fullName" placeholder="Juan Dela Cruz" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="phone" placeholder="09XX XXX XXXX" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="email" placeholder="juan@email.com" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Select Date</label>
+                                <input type="date" id="bookDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Number of Players</label>
+                                <select id="players" required>
+                                    <option value="">Select...</option>
+                                    <option value="2">2 Players (Singles)</option>
+                                    <option value="4" selected>4 Players (Doubles)</option>
+                                    <option value="6">6 Players (Rotation)</option>
+                                    <option value="8">8 Players (Full Court)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Select Time Slot</label>
+                            <div class="time-slots" id="timeSlots">
+                                <div class="time-slot" onclick="selectTime(this)">6:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">7:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">8:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">9:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">10:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">11:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">12:00 PM</div>
+                                <div class="time-slot unavailable">1:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">2:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">3:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">4:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">5:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">6:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">7:00 PM</div>
+                                <div class="time-slot unavailable">8:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">9:00 PM</div>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary" id="bookingSummary">
+                            <div class="summary-row">
+                                <span class="summary-label">Session</span>
+                                <span class="summary-value" id="summarySession">1 Hour</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Date</span>
+                                <span class="summary-value" id="summaryDate">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Time</span>
+                                <span class="summary-value" id="summaryTime">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Total</span>
+                                <span class="summary-value" id="summaryTotal">₱200</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-book">🏓 Confirm Booking</button>
+                        <div class="form-note">🔒 Your information is secure. No payment required until arrival.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>KURTYARD</h3>
+                <p>Your neighborhood pickleball court. Built for community, designed for fun. See you on the court! 🏓</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#booking">Book a Court</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="#">📍 Your Location Here</a></li>
+                    <li><a href="#"> 09XX XXX XXXX</a></li>
+                    <li><a href="#">️ hello@kurtyard.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 KURTYARD Pickleball Court. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-icon">✅</div>
+            <h3>Booking Confirmed!</h3>
+            <p id="modalMessage">Your court has been reserved. We'll send a confirmation to your email. See you on the court! 🏓</p>
+            <button class="modal-close" onclick="closeModal()">Got It!</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== NAVBAR SCROLL =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== MOBILE MENU =====
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // ===== SET MIN DATE TO TODAY =====
+        const dateInput = document.getElementById('bookDate');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+        dateInput.value = today;
+
+        // ===== PRICING SELECTION =====
+        let selectedPrice = 200;
+        let selectedHours = 1;
+
+        function selectPricing(card, price) {
+            document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            selectedPrice = price;
+            selectedHours = price === 200 ? 1 : price === 350 ? 2 : 3;
+            updateSummary();
+        }
+
+        // ===== TIME SLOT SELECTION =====
+        let selectedTime = null;
+
+        function selectTime(slot) {
+            if (slot.classList.contains('unavailable')) return;
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            slot.classList.add('selected');
+            selectedTime = slot.textContent;
+            updateSummary();
+        }
+
+        // ===== UPDATE SUMMARY =====
+        function updateSummary() {
+            const hourLabel = selectedHours === 1 ? '1 Hour' : selectedHours + ' Hours';
+            document.getElementById('summarySession').textContent = hourLabel;
+
+            const dateVal = document.getElementById('bookDate').value;
+            if (dateVal) {
+                const dateObj = new Date(dateVal + 'T00:00:00');
+                document.getElementById('summaryDate').textContent = dateObj.toLocaleDateString('en-US', {
+                    weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
+                });
+            }
+
+            document.getElementById('summaryTime').textContent = selectedTime || '—';
+            document.getElementById('summaryTotal').textContent = '₱' + selectedPrice;
+        }
+
+        document.getElementById('bookDate').addEventListener('change', updateSummary);
+
+        // ===== FORM SUBMISSION =====
+        function handleBooking(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('fullName').value;
+            const date = document.getElementById('bookDate').value;
+            const time = selectedTime;
+
+            if (!time) {
+                alert('Please select a time slot.');
+                return;
+            }
+
+            const dateObj = new Date(date + 'T00:00:00');
+            const formattedDate = dateObj.toLocaleDateString('en-US', {
+                weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+            });
+
+            document.getElementById('modalMessage').innerHTML =
+                `Thanks, <strong>${name}</strong>! Your <strong>${selectedHours}-hour</strong> court session is booked for <strong>${formattedDate}</strong> at <strong>${time}</strong>. We'll send a confirmation to your email. See you on the court! 🏓`;
+
+            document.getElementById('successModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.getElementById('bookingForm').reset();
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            selectedTime = null;
+            updateSummary();
+        }
+
+        // Close modal on overlay click
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ===== SMOOTH REVEAL ON SCROLL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-grid, .amenity-card, .booking-wrapper, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Stagger amenity cards
+        document.querySelectorAll('.amenity-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.1}s`;
+        });
+    </script>
+
+</body>
+</html>
