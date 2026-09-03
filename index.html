@@ -80,8 +80,8 @@
     </section>
 
     <!-- Booking Section -->
-    <!-- Booking Section -->
     <section id="book" class="py-16 px-4 max-w-7xl mx-auto">
+        <!-- Cancellation Notice -->
         <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-r-lg">
             <div class="flex">
                 <i class="fa-solid fa-triangle-exclamation text-blue-500 mt-1 mr-3"></i>
@@ -92,34 +92,38 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Main Grid Layout (Items Stretch to match height) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            <!-- LEFT SIDE: Booking Summary -->
+            <!-- LEFT SIDE: Booking Summary (Stretched to full height) -->
             <div class="lg:col-span-4">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-24">
-                    <h3 class="font-bold text-xl mb-4 flex items-center text-slate-800">
-                        <i class="fa-solid fa-receipt mr-2 text-blue-600"></i> Booking Summary
-                    </h3>
-                    <div id="summaryContent" class="text-sm text-slate-600 mb-6 bg-slate-50 p-4 rounded-lg border border-slate-100">
-                        Please select time slots from the grid to see your summary.
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-full flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-xl mb-4 flex items-center text-slate-800">
+                            <i class="fa-solid fa-receipt mr-2 text-blue-600"></i> Booking Summary
+                        </h3>
+                        <div id="summaryContent" class="text-sm text-slate-600 mb-6 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            Please select time slots from the grid to see your summary.
+                        </div>
+                        <div class="flex justify-between items-center font-bold text-lg mb-6 pb-4 border-b border-slate-200">
+                            <span class="text-slate-800">Total</span>
+                            <span id="totalPrice" class="text-slate-900">₱0.00</span>
+                        </div>
+                        <h4 class="font-bold text-md mb-3 text-slate-800">Personal Information</h4>
+                        <div class="space-y-3 mb-6">
+                            <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+                            <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center font-bold text-lg mb-6 pb-4 border-b border-slate-200">
-                        <span class="text-slate-800">Total</span>
-                        <span id="totalPrice" class="text-slate-900">₱0.00</span>
-                    </div>
-                    <h4 class="font-bold text-md mb-3 text-slate-800">Personal Information</h4>
-                    <div class="space-y-3 mb-6">
-                        <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
-                        <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
-                    </div>
-                    <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg" id="submitBooking">
+                    <!-- Button pushed to the bottom -->
+                    <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg mt-auto" id="submitBooking">
                         Confirm Booking
                     </button>
                 </div>
             </div>
 
-            <!-- RIGHT SIDE: Calendar & Time Grid (Unchanged Position) -->
-            <div class="lg:col-span-8 space-y-6">
+            <!-- RIGHT SIDE: Calendar & Time Grid -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
                 <!-- Calendar Section -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <div class="flex justify-between items-center mb-4">
@@ -130,13 +134,11 @@
                     <div class="grid grid-cols-7 gap-1 text-center text-xs text-slate-500 mb-2">
                         <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
                     </div>
-                    <div class="grid grid-cols-7 gap-1" id="calendarGrid">
-                        <!-- Calendar days will be generated by JS -->
-                    </div>
+                    <div class="grid grid-cols-7 gap-1" id="calendarGrid"></div>
                 </div>
 
                 <!-- Time Grid Section -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex-grow">
                     <h3 class="font-bold text-xl mb-2">Available Courts & Times</h3>
                     <p class="text-sm text-slate-500 mb-4">each time slot duration last for 60minutes only</p>
                     
@@ -145,6 +147,7 @@
                             <!-- Time Headers -->
                             <div class="flex mb-3 ml-20">
                                 <div class="flex gap-2 text-xs text-slate-600 font-semibold">
+                                    <div class="w-16 text-center">2:00 PM</div>
                                     <div class="w-16 text-center">3:00 PM</div>
                                     <div class="w-16 text-center">4:00 PM</div>
                                     <div class="w-16 text-center">5:00 PM</div>
@@ -159,13 +162,10 @@
                             </div>
 
                             <!-- Court Rows -->
-                            <div class="space-y-3" id="courtRows">
-                                <!-- Courts will be generated by JS -->
-                            </div>
+                            <div class="space-y-3" id="courtRows"></div>
                         </div>
                     </div>
 
-                    <!-- Scroll Indicator -->
                     <div class="flex justify-center mt-2 text-slate-400 text-xs">
                         <i class="fa-solid fa-arrows-left-right mr-2"></i> Scroll to see more times
                     </div>
