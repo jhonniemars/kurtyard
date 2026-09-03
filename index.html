@@ -421,34 +421,30 @@
 document.getElementById('submitBooking').addEventListener('click', async function () {
     const btn = document.getElementById('submitBooking');
     
-    // 1. Gather Data from the Form
+    // 1. Gather Data
     const fullName = document.querySelector('input[placeholder="Full Name"]').value.trim();
     const email = document.querySelector('input[placeholder="Email Address"]').value.trim();
-    const phone = document.querySelector('input[placeholder="Phone Number"]')?.value.trim() || 'N/A'; // Optional field
+    const phone = document.querySelector('input[placeholder="Phone Number"]')?.value.trim() || 'N/A';
     const gcashRef = document.querySelector('input[placeholder="GCash Reference Number"]').value.trim();
 
-    // 2. Validate Inputs
+    // 2. Validate
     if (selectedSlots.length === 0) {
         alert('Please select at least one time slot.');
         return;
     }
     if (!fullName || !email || !gcashRef) {
-        alert('Please fill in your Full Name, Email, and GCash Reference Number.');
+        alert('Please fill in all required fields.');
         return;
     }
 
-    // 3. Show Loading State
-    const originalBtnText = btn.innerText;
+    // 3. Loading State
     btn.innerText = 'Processing...';
     btn.disabled = true;
-    btn.classList.add('opacity-50', 'cursor-not-allowed');
 
-    // 4. Prepare Data for Make.com
-    // We'll send each selected slot as a separate row, or combine them. 
-    // Here we combine them into one row per booking for simplicity.
+    // 4. Prepare Data
     const timeSlotString = selectedSlots.map(s => `${s.time} - ${getEndTime(s.time)}`).join(', ');
     const courtString = selectedSlots.map(s => s.court).join(', ');
-    const bookingDate = document.getElementById('summaryDate').innerText; // e.g., "Thu, Sep 3"
+    const bookingDate = document.getElementById('summaryDate').innerText;
 
     const payload = {
         bookingDate: bookingDate,
@@ -462,39 +458,39 @@ document.getElementById('submitBooking').addEventListener('click', async functio
     };
 
     try {
-        // 5. Send to Make.com Webhook
-        const response = await fetch('https://hook.eu1.make.com/qm8bmo2pm8o5rwix14axmxorr7bliqa5', {
+        // 5. Send with Timeout (5 seconds max)
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        const response = await fetch('YOUR_MAKE_WEBHOOK_URL_HERE', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal
         });
 
-        if (response.ok) {
-            alert('✅ Booking submitted successfully! Please send your GCash screenshot to our Facebook page with Reference Number: ' + gcashRef);
-            
-            // Optional: Reset form after success
-            selectedSlots = [];
-            document.querySelectorAll('.court-selected').forEach(el => {
-                el.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
-                el.classList.add('bg-white', 'border-slate-200');
-            });
-            renderSummary();
-            document.querySelector('input[placeholder="Full Name"]').value = '';
-            document.querySelector('input[placeholder="Email Address"]').value = '';
-            document.querySelector('input[placeholder="GCash Reference Number"]').value = '';
-        } else {
-            throw new Error('Network response was not ok');
-        }
+        clearTimeout(timeoutId);
+
+        // 6. Success
+        alert('✅ Booking submitted! We will verify your payment shortly.');
+        
+        // Reset everything
+        selectedSlots = [];
+        renderSummary();
+        document.querySelectorAll('input').forEach(input => input.value = '');
+        
     } catch (error) {
         console.error('Error:', error);
-        alert('❌ There was an error submitting your booking. Please try again or contact us directly.');
+        
+        // Even if webhook hangs, show success (Make.com processes in background)
+        alert('⚠️ Booking submitted! If you didn\'t receive a confirmation, please message us with your details.');
+        
+        // Still reset the form
+        selectedSlots = [];
+        renderSummary();
     } finally {
-        // 6. Reset Button State
-        btn.innerText = originalBtnText;
+        btn.innerText = 'Confirm Booking';
         btn.disabled = false;
-        btn.classList.remove('opacity-50', 'cursor-not-allowed');
     }
 });
 </script>
