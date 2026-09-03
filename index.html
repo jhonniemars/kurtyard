@@ -254,7 +254,7 @@
     </footer>
 
     <!-- Interactive JavaScript -->
-    <script>
+<script>
     // Generate Calendar
     const calendarGrid = document.getElementById('calendarGrid');
     const daysInMonth = 30;
@@ -270,7 +270,6 @@
         dayCell.className = 'p-2 rounded-full text-sm cursor-pointer hover:bg-blue-100 transition flex items-center justify-center';
         dayCell.textContent = day;
         
-        // Highlight the 5th as shown in your screenshot
         if (day === 5) {
             dayCell.classList.add('bg-blue-600', 'text-white', 'font-bold');
         } else {
@@ -291,11 +290,12 @@
 
     // Generate Time Grid (1 Court Only)
     const courtRows = document.getElementById('courtRows');
-    const courts = ['Court 1']; // <--- CHANGED TO 1 COURT ONLY
+    const courts = ['Court 1']; 
     
+    // VENUE CLOSED removed from here
     const timeSlots = [
-        { time: '3:00 PM', type: 'unavailable' },
-        { time: '4:00 PM', type: 'unavailable' },
+        { time: '3:00 PM', type:  'available' },
+        { time: '4:00 PM', type:  'available' },
         { time: '5:00 PM', type: 'available' },
         { time: '6:00 PM', type: 'available' },
         { time: '7:00 PM', type: 'available' },
@@ -303,9 +303,7 @@
         { time: '9:00 PM', type: 'available' },
         { time: '10:00 PM', type: 'available' },
         { time: '11:00 PM', type: 'available' },
-        { time: '12:00 AM', type: 'available' },
-        { time: '1:00 AM', type: 'available' },
-        { time: '2:00 AM', type: 'available' },
+        { time: '12:00 PM', type: 'available' },
     ];
 
     courts.forEach((court) => {
@@ -317,7 +315,6 @@
         courtLabel.textContent = court;
         row.appendChild(courtLabel);
         
-        // Using flex instead of grid to prevent wrapping into two rows
         const slotsContainer = document.createElement('div');
         slotsContainer.className = 'flex gap-2'; 
         
@@ -325,9 +322,8 @@
             const slotDiv = document.createElement('div');
             slotDiv.className = 'w-16 h-12 shrink-0 rounded-lg flex items-center justify-center text-xs font-semibold transition';
             
-            if (slot.type === 'closed') {
-                slotDiv.className = 'w-24 h-12 shrink-0 bg-red-50 border-2 border-dashed border-red-200 rounded-lg flex items-center justify-center text-red-600';
-            } else if (slot.type === 'unavailable') {
+            // VENUE CLOSED logic removed from here
+            if (slot.type === 'unavailable') {
                 slotDiv.className += ' bg-slate-200 cursor-not-allowed';
             } else {
                 slotDiv.className += ' bg-white border-2 border-slate-200 cursor-pointer hover:border-blue-500 hover:bg-blue-50';
