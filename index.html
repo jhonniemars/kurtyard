@@ -82,7 +82,7 @@
     <!-- Booking Section -->
     <section id="book" class="py-16 px-4">
         <div class="max-w-7xl mx-auto">
-            
+
             <!-- Cancellation Notice -->
             <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-r-lg">
                 <div class="flex">
@@ -94,23 +94,9 @@
                 </div>
             </div>
 
-            <!-- SINGLE UNIFIED GRID: All cards share the same edges -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                <!-- LEFT: Calendar -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex justify-between items-center mb-4">
-                        <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-left"></i></button>
-                        <h3 class="font-bold text-lg">September 2026</h3>
-                        <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-                    <div class="grid grid-cols-7 gap-1 text-center text-xs text-slate-500 mb-2">
-                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
-                    </div>
-                    <div class="grid grid-cols-7 gap-1" id="calendarGrid"></div>
-                </div>
 
-                <!-- RIGHT: Time Grid -->
+                <!-- LEFT: Time Grid -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h3 class="font-bold text-xl mb-2">Available Courts & Times</h3>
                     <p class="text-sm text-slate-500 mb-4">each time slot duration last for 60minutes only</p>
@@ -138,7 +124,20 @@
                     </div>
                 </div>
 
-                <!-- Personal Information (Spans BOTH columns = exact outer edges) -->
+                <!-- RIGHT: Calendar -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h3 class="font-bold text-lg">September 2026</h3>
+                        <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs text-slate-500 mb-2">
+                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1" id="calendarGrid"></div>
+                </div>
+
+                <!-- Personal Information -->
                 <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h3 class="font-bold text-xl mb-4 text-slate-800">Personal Information</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -147,22 +146,22 @@
                     </div>
                 </div>
 
-                <!-- Booking Summary -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <!-- ✅ BOOKING SUMMARY — everything nested INSIDE this card -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h3 class="font-bold text-xl mb-4 text-slate-800">Booking Summary</h3>
-                </div>
 
-                                    <!-- Day & Date -->
+                    <!-- Day & Date -->
                     <p id="summaryDate" class="text-slate-700 mb-4 hidden"></p>
-                    
-                    <!-- Selected Slots -->
+
+                    <!-- Selected slot cards (time range, court, price, trash icon) -->
                     <div id="summaryContent" class="space-y-3"></div>
-                    
-                    <!-- Dashed Divider + Total -->
+
+                    <!-- Dashed divider + Total -->
                     <div id="summaryTotalRow" class="hidden border-t-2 border-dashed border-slate-300 mt-4 pt-4 flex justify-between items-center">
                         <span class="font-bold text-lg text-slate-800">Total</span>
                         <span id="totalPrice" class="font-bold text-2xl text-blue-700">₱0.00</span>
                     </div>
+                </div>
 
                 <!-- Online Payment -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
@@ -178,7 +177,7 @@
                     </label>
                 </div>
 
-                <!-- Confirm Booking Button (Spans both columns) -->
+                <!-- Confirm Booking -->
                 <button class="lg:col-span-2 w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg" id="submitBooking">
                     Confirm Booking
                 </button>
