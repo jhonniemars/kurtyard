@@ -93,7 +93,7 @@
         </div>
 
                 <!-- Calendar & Time Grid (Below) -->
-        <div class="space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Calendar Section -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                 <div class="flex justify-between items-center mb-4">
@@ -107,13 +107,14 @@
                 <div class="grid grid-cols-7 gap-1" id="calendarGrid"></div>
             </div>
 
-            <!-- Time Grid Section -->
+            <!-- LEFT: Time Grid Section -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                 <h3 class="font-bold text-xl mb-2">Available Courts & Times</h3>
                 <p class="text-sm text-slate-500 mb-4">each time slot duration last for 60minutes only</p>
                 
                 <div class="overflow-x-auto pb-4">
-                    <div class="min-w-[800px]">
+                    <div class="min-w-[600px]">
+                        <!-- Time Headers -->
                         <div class="flex mb-3 ml-20">
                             <div class="flex gap-2 text-xs text-slate-600 font-semibold">
                                 <div class="w-16 text-center">3:00 PM</div>
@@ -124,7 +125,7 @@
                                 <div class="w-16 text-center">8:00 PM</div>
                                 <div class="w-16 text-center">9:00 PM</div>
                                 <div class="w-16 text-center">10:00 PM</div>
-                                <div class="w-16 text-center">11:00 PM</div
+                                <div class="w-16 text-center">11:00 PM</div>
                                 <div class="w-16 text-center">12:00 AM</div>
                             </div>
                         </div>
