@@ -79,161 +79,98 @@
         </div>
     </section>
 
-        <!-- Booking Section -->
-    <section id="book" class="py-16 px-4 max-w-7xl mx-auto">
-        <!-- Cancellation Notice -->
-        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-r-lg">
-            <div class="flex">
-                <i class="fa-solid fa-triangle-exclamation text-blue-500 mt-1 mr-3"></i>
-                <div>
-                    <h3 class="font-bold text-blue-800">Notice Before Booking</h3>
-                    <p class="text-sm text-blue-700 mt-1"><strong>CANCELLATION POLICY:</strong> No rescheduling, no refund. All bookings are considered final once confirmed and paid.</p>
-                </div>
-            </div>
-        </div>
-
-                <!-- Calendar & Time Grid (Below) -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Calendar Section -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <div class="flex justify-between items-center mb-4">
-                    <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-left"></i></button>
-                    <h3 class="font-bold text-lg">September 2026</h3>
-                    <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
-                <div class="grid grid-cols-7 gap-1 text-center text-xs text-slate-500 mb-2">
-                    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
-                </div>
-                <div class="grid grid-cols-7 gap-1" id="calendarGrid"></div>
-            </div>
-
-            <!-- LEFT: Time Grid Section -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h3 class="font-bold text-xl mb-2">Available Courts & Times</h3>
-                <p class="text-sm text-slate-500 mb-4">each time slot duration last for 60minutes only</p>
-                
-                <div class="overflow-x-auto pb-4">
-                    <div class="min-w-[600px]">
-                        <!-- Time Headers -->
-                        <div class="flex mb-3 ml-20">
-                            <div class="flex gap-2 text-xs text-slate-600 font-semibold">
-                                <div class="w-16 text-center">3:00 PM</div>
-                                <div class="w-16 text-center">4:00 PM</div>
-                                <div class="w-16 text-center">5:00 PM</div>
-                                <div class="w-16 text-center">6:00 PM</div>
-                                <div class="w-16 text-center">7:00 PM</div>
-                                <div class="w-16 text-center">8:00 PM</div>
-                                <div class="w-16 text-center">9:00 PM</div>
-                                <div class="w-16 text-center">10:00 PM</div>
-                                <div class="w-16 text-center">11:00 PM</div>
-                                <div class="w-16 text-center">12:00 AM</div>
-                            </div>
-                        </div>
-                        <div class="space-y-3" id="courtRows"></div>
+    <!-- Booking Section -->
+    <section id="book" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Cancellation Notice -->
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-r-lg">
+                <div class="flex">
+                    <i class="fa-solid fa-triangle-exclamation text-blue-500 mt-1 mr-3"></i>
+                    <div>
+                        <h3 class="font-bold text-blue-800">Notice Before Booking</h3>
+                        <p class="text-sm text-blue-700 mt-1"><strong>CANCELLATION POLICY:</strong> No rescheduling, no refund. All bookings are considered final once confirmed and paid.</p>
                     </div>
                 </div>
-                <div class="flex justify-center mt-2 text-slate-400 text-xs">
-                    <i class="fa-solid fa-arrows-left-right mr-2"></i> Scroll to see more times
-                </div>
             </div>
-    </section>
-        <!-- Personal Information (Full Width, Top) -->
-              <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+
+            <!-- SINGLE UNIFIED GRID: All cards share the same edges -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- LEFT: Calendar -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h3 class="font-bold text-lg">September 2026</h3>
+                        <button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs text-slate-500 mb-2">
+                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1" id="calendarGrid"></div>
+                </div>
+
+                <!-- RIGHT: Time Grid -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-xl mb-2">Available Courts & Times</h3>
+                    <p class="text-sm text-slate-500 mb-4">each time slot duration last for 60minutes only</p>
+                    <div class="overflow-x-auto pb-4">
+                        <div class="min-w-[600px]">
+                            <div class="flex mb-3 ml-20">
+                                <div class="flex gap-2 text-xs text-slate-600 font-semibold">
+                                    <div class="w-16 text-center">3:00 PM</div>
+                                    <div class="w-16 text-center">4:00 PM</div>
+                                    <div class="w-16 text-center">5:00 PM</div>
+                                    <div class="w-16 text-center">6:00 PM</div>
+                                    <div class="w-16 text-center">7:00 PM</div>
+                                    <div class="w-16 text-center">8:00 PM</div>
+                                    <div class="w-16 text-center">9:00 PM</div>
+                                    <div class="w-16 text-center">10:00 PM</div>
+                                    <div class="w-16 text-center">11:00 PM</div>
+                                    <div class="w-16 text-center">12:00 AM</div>
+                                </div>
+                            </div>
+                            <div class="space-y-3" id="courtRows"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-2 text-slate-400 text-xs">
+                        <i class="fa-solid fa-arrows-left-right mr-2"></i> Scroll to see more times
+                    </div>
+                </div>
+
+                <!-- Personal Information (Spans BOTH columns = exact outer edges) -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h3 class="font-bold text-xl mb-4 text-slate-800">Personal Information</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
                         <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
                     </div>
                 </div>
-        <!-- Booking Summary & Online Payment (Side by Side) -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        
-            <!-- LEFT: Booking Summary -->
+
+                <!-- Booking Summary -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h3 class="font-bold text-xl mb-4 text-slate-800">Booking Summary</h3>
                     <p id="summaryContent" class="text-slate-400 italic">Please select time slots from the grid.</p>
                 </div>
 
-            <!-- RIGHT: Online Payment -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h3 class="font-bold text-xl mb-3 text-slate-800">Online Payment</h3>
-                <p class="text-sm text-slate-500 mb-6">Please send the exact amount via GCash and upload the receipt. (Only images accepted)</p>
-                
-                <!-- QR Code -->
-                <div class="border border-slate-200 rounded-lg p-4 flex justify-center mb-6 bg-white">
-                    <img src="gcash.jpeg" alt="GCash QR Code" class="w-40 h-40 object-contain">
+                <!-- Online Payment -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-xl mb-3 text-slate-800">Online Payment</h3>
+                    <p class="text-sm text-slate-500 mb-6">Please send the exact amount via GCash and upload the receipt. (Only images accepted)</p>
+                    <div class="border border-slate-200 rounded-lg p-4 flex justify-center mb-6 bg-white">
+                        <img src="gcash-qr.png" alt="GCash QR Code" class="w-40 h-40 object-contain">
+                    </div>
+                    <input type="text" placeholder="GCash Reference Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm mb-4">
+                    <label for="receiptUpload" class="block w-full border-2 border-dashed border-slate-300 rounded-lg p-4 text-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition">
+                        <p class="text-sm text-slate-600 font-medium">Upload GCash Receipt (Image)</p>
+                        <input type="file" accept="image/*" id="receiptUpload" class="hidden">
+                    </label>
                 </div>
 
-                <!-- GCash Reference Number -->
-                <input type="text" placeholder="GCash Reference Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm mb-4">
-                
-                <!-- Upload Receipt -->
-                <label for="receiptUpload" class="block w-full border-2 border-dashed border-slate-300 rounded-lg p-4 text-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition">
-                    <p class="text-sm text-slate-600 font-medium">Upload GCash Receipt (Image)</p>
-                    <input type="file" accept="image/*" id="receiptUpload" class="hidden">
-                </label>
-            </div>
-        </div>
-
-        <!-- Confirm Booking Button -->
-        <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg mb-6" id="submitBooking">
-            Confirm Booking
-        </button>
-
-    <!-- Location Section -->
-    <section id="location" class="bg-blue-50 py-16 px-4">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Find Us on the Court</h2>
-                <blockquote class="text-xl text-blue-700 italic mb-8 border-l-4 border-blue-400 pl-4">
-                    "Great games happen where great people gather. Step onto our premium courts and experience the ultimate pickleball action."
-                </blockquote>
-                <div class="space-y-4">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fa-solid fa-location-dot text-blue-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800">KURTYARD Pickleball</h4>
-                            <p class="text-slate-600">Minlagas, Brgy. San Luis, Gingoog City</p>
-                            <p class="text-slate-600">Misamis Oriental</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fa-solid fa-clock text-blue-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800">Operating Hours</h4>
-                            <p class="text-slate-600">Monday - Sunday: 3:00 PM - 12:00 AM</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fa-solid fa-phone text-blue-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800">Contact Us</h4>
-                            <p class="text-slate-600">+63 912 345 6789</p>
-                            <p class="text-slate-600">kurtyard@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://www.bing.com/maps/search?v=2&pc=FACEBK&mid=8100&mkt=en-US&fbclid=IwY2xjawUF7fBwZG9mBWV4dG4DYWVtAjEwAGJyaWQRMXYxSnV1WDROZk5PMU8yTGFzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeW6Ds9whLNLdFXzC5Pd4vjN9PhIqmZ_pFH4iV4jhBiUD2d-7kRsaxbHt5uNs_aem_Ti2waDQ_3B6MSNAITUqg8g&FORM=FBKPL1&q=Minlagas%2C+Gingoog+City&cp=8.815893%7E125.093303&lvl=15.8&style=r" target="_blank" class="inline-flex items-center mt-8 text-blue-700 font-bold hover:text-blue-800 transition">
-                    Get Directions <i class="fa-solid fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-            <div class="bg-slate-300 rounded-2xl overflow-hidden shadow-lg h-96 relative group">
-                <iframe 
-                    src="https://www.google.com/maps?q=8.815893,125.093303&hl=en&z=15&output=embed" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
-                    class="grayscale group-hover:grayscale-0 transition duration-500">
-                </iframe>
+                <!-- Confirm Booking Button (Spans both columns) -->
+                <button class="lg:col-span-2 w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg" id="submitBooking">
+                    Confirm Booking
+                </button>
             </div>
         </div>
     </section>
