@@ -92,51 +92,7 @@
             </div>
         </div>
 
-        <!-- Personal Information (Full Width, Top) -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-6">
-            <h3 class="font-bold text-xl mb-4 text-slate-800">Personal Information</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
-                <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
-            </div>
-        </div>
-
-        <!-- Booking Summary & Online Payment (Side by Side) -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            
-            <!-- LEFT: Booking Summary -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h3 class="font-bold text-xl mb-4 text-slate-800">Booking Summary</h3>
-                <p id="summaryContent" class="text-slate-400 italic">Please select time slots from the grid.</p>
-            </div>
-
-            <!-- RIGHT: Online Payment -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h3 class="font-bold text-xl mb-3 text-slate-800">Online Payment</h3>
-                <p class="text-sm text-slate-500 mb-6">Please send the exact amount via GCash and upload the receipt. (Only images accepted)</p>
-                
-                <!-- QR Code -->
-                <div class="border border-slate-200 rounded-lg p-4 flex justify-center mb-6 bg-white">
-                    <img src="gcash.jpeg" alt="GCash QR Code" class="w-40 h-40 object-contain">
-                </div>
-
-                <!-- GCash Reference Number -->
-                <input type="text" placeholder="GCash Reference Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm mb-4">
-                
-                <!-- Upload Receipt -->
-                <label for="receiptUpload" class="block w-full border-2 border-dashed border-slate-300 rounded-lg p-4 text-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition">
-                    <p class="text-sm text-slate-600 font-medium">Upload GCash Receipt (Image)</p>
-                    <input type="file" accept="image/*" id="receiptUpload" class="hidden">
-                </label>
-            </div>
-        </div>
-
-        <!-- Confirm Booking Button -->
-        <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg mb-6" id="submitBooking">
-            Confirm Booking
-        </button>
-
-        <!-- Calendar & Time Grid (Below) -->
+                <!-- Calendar & Time Grid (Below) -->
         <div class="space-y-6">
             <!-- Calendar Section -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
@@ -181,6 +137,50 @@
             </div>
         </div>
     </section>
+
+        <!-- Personal Information (Full Width, Top) -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-6">
+            <h3 class="font-bold text-xl mb-4 text-slate-800">Personal Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+                <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+            </div>
+        </div>
+
+        <!-- Booking Summary & Online Payment (Side by Side) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            
+            <!-- LEFT: Booking Summary -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="font-bold text-xl mb-4 text-slate-800">Booking Summary</h3>
+                <p id="summaryContent" class="text-slate-400 italic">Please select time slots from the grid.</p>
+            </div>
+
+            <!-- RIGHT: Online Payment -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="font-bold text-xl mb-3 text-slate-800">Online Payment</h3>
+                <p class="text-sm text-slate-500 mb-6">Please send the exact amount via GCash and upload the receipt. (Only images accepted)</p>
+                
+                <!-- QR Code -->
+                <div class="border border-slate-200 rounded-lg p-4 flex justify-center mb-6 bg-white">
+                    <img src="gcash.jpeg" alt="GCash QR Code" class="w-40 h-40 object-contain">
+                </div>
+
+                <!-- GCash Reference Number -->
+                <input type="text" placeholder="GCash Reference Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm mb-4">
+                
+                <!-- Upload Receipt -->
+                <label for="receiptUpload" class="block w-full border-2 border-dashed border-slate-300 rounded-lg p-4 text-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition">
+                    <p class="text-sm text-slate-600 font-medium">Upload GCash Receipt (Image)</p>
+                    <input type="file" accept="image/*" id="receiptUpload" class="hidden">
+                </label>
+            </div>
+        </div>
+
+        <!-- Confirm Booking Button -->
+        <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg mb-6" id="submitBooking">
+            Confirm Booking
+        </button>
 
     <!-- Location Section -->
     <section id="location" class="bg-blue-50 py-16 px-4">
