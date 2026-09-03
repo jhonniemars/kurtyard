@@ -163,17 +163,6 @@
                     <input type="tel" placeholder="Phone Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
                     <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
                 </div>
-                <h4 class="font-bold text-md mb-2 text-slate-800">Online Payment</h4>
-                <p class="text-xs text-slate-500 mb-4">Please send the exact amount via GCash and upload the QR code receipt. (Only images accepted)</p>
-                <div class="border-2 border-dashed border-slate-300 rounded-xl p-6 text-center hover:bg-blue-50 transition cursor-pointer relative">
-                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-400 mb-2"></i>
-                    <p class="text-sm text-slate-600 font-medium">Upload GCash Receipt</p>
-                    <input type="file" accept="image/*" class="hidden" id="receiptUpload">
-                    <label for="receiptUpload" class="text-xs text-blue-600 font-semibold cursor-pointer mt-2 block">Choose File</label>
-                </div>
-                <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg mt-6 disabled:opacity-50 disabled:cursor-not-allowed" id="submitBooking" disabled>
-                    Confirm Booking
-                </button>
             </div>
         </div>
     </section>
@@ -379,14 +368,6 @@
         totalPrice.textContent = `₱${(selectedSlots.length * pricePerSlot).toFixed(2)}`;
         submitBtn.disabled = false;
     }
-
-    document.getElementById('receiptUpload').addEventListener('change', function(e) {
-        if (e.target.files.length > 0) {
-            const label = e.target.nextElementSibling;
-            label.textContent = `Selected: ${e.target.files[0].name}`;
-            label.classList.add('text-blue-700');
-        }
-    });
 
     document.getElementById('submitBooking').addEventListener('click', function() {
         alert('Booking request submitted!');
