@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KURTYARD | Premium Tropical Pickleball</title>
+    <title>KURTYARD | Premium Pickleball</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .tropical-gradient {
-            background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0ea5e9 100%);
+        .ocean-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0ea5e9 100%);
         }
         .court-slot { transition: all 0.2s ease; cursor: pointer; }
         .court-slot:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        .court-available { background-color: #d1fae5; border: 2px solid #10b981; color: #065f46; }
-        .court-selected { background-color: #fef3c7; border: 2px solid #f59e0b; color: #92400e; }
-        .court-booked { background-color: #fee2e2; border: 2px solid #ef4444; color: #991b1b; text-decoration: line-through; cursor: not-allowed; }
-        .court-unavailable { background-color: #f3f4f6; border: 2px solid #d1d5db; color: #9ca3af; cursor: not-allowed; }
+        
+        /* Blue & White Theme Slots */
+        .court-available { background-color: #eff6ff; border: 2px solid #3b82f6; color: #1d4ed8; }
+        .court-selected { background-color: #2563eb; border: 2px solid #1d4ed8; color: #ffffff; }
+        .court-booked { background-color: #f1f5f9; border: 2px solid #cbd5e1; color: #94a3b8; text-decoration: line-through; cursor: not-allowed; }
+        .court-unavailable { background-color: #f8fafc; border: 2px solid #e2e8f0; color: #cbd5e1; cursor: not-allowed; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
     <!-- Navigation -->
-<nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-24 items-center">
-            <div class="flex items-center">
-                <img src="kurtlogo.png" alt="KURTYARD" class="h-20 w-auto">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <img src="kurtlogo.png" alt="KURTYARD" class="h-10 w-auto">
+                </div>
+                <a href="#book" class="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">Book Now</a>
             </div>
-            <a href="#book" class="bg-emerald-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-emerald-700 transition">Book Now</a>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="tropical-gradient text-white py-24 px-4 relative overflow-hidden">
+    <section id="home" class="ocean-gradient text-white py-24 px-4 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Life's Better at <span class="text-amber-300">KURTYARD</span></h1>
-            <p class="text-lg md:text-xl mb-8 text-emerald-50 max-w-2xl mx-auto">
-                Premium pickleball nestled in a tropical paradise. Whether you're a beginner or a seasoned player, KURTYARD is your go-to spot for fun, fitness, and community.
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Life's Better at <span class="text-sky-300">KURTYARD</span></h1>
+            <p class="text-lg md:text-xl mb-8 text-blue-50 max-w-2xl mx-auto">
+                Premium pickleball courts nestled in a tropical paradise. Whether you're a beginner or a seasoned player, KURTYARD is your go-to spot for fun, fitness, and community.
             </p>
             <div class="flex justify-center">
-                <a href="#book" class="bg-amber-400 text-emerald-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-amber-300 transition shadow-lg">
+                <a href="#book" class="bg-white text-blue-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg">
                     <i class="fa-solid fa-calendar-check mr-2"></i> Book Your Court
                 </a>
             </div>
@@ -54,16 +56,16 @@
     <section id="book" class="py-16 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Book Your Court</h2>
-            <p class="text-slate-600">Select your date, time, and court to reserve your spot in paradise.</p>
+            <p class="text-slate-600">Select your date, time, and court to reserve your spot.</p>
         </div>
 
         <!-- Cancellation Notice -->
-        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-8 rounded-r-lg">
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-r-lg">
             <div class="flex">
-                <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1 mr-3"></i>
+                <i class="fa-solid fa-triangle-exclamation text-blue-500 mt-1 mr-3"></i>
                 <div>
-                    <h3 class="font-bold text-amber-800">Notice Before Booking</h3>
-                    <p class="text-sm text-amber-700 mt-1"><strong>CANCELLATION POLICY:</strong> No rescheduling, no refund. All bookings are considered final once confirmed and paid. Please verify your schedule prior to confirming.</p>
+                    <h3 class="font-bold text-blue-800">Notice Before Booking</h3>
+                    <p class="text-sm text-blue-700 mt-1"><strong>CANCELLATION POLICY:</strong> No rescheduling, no refund. All bookings are considered final once confirmed and paid. Please verify your schedule prior to confirming.</p>
                 </div>
             </div>
         </div>
@@ -73,13 +75,13 @@
             <div class="lg:col-span-2 space-y-6">
                 <!-- Date Selector -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h3 class="font-bold text-lg mb-4 flex items-center"><i class="fa-regular fa-calendar mr-2 text-emerald-600"></i> Select Date</h3>
-                    <input type="date" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none" id="bookingDate">
+                    <h3 class="font-bold text-lg mb-4 flex items-center"><i class="fa-regular fa-calendar mr-2 text-blue-600"></i> Select Date</h3>
+                    <input type="date" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" id="bookingDate">
                 </div>
 
                 <!-- Time & Court Grid -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h3 class="font-bold text-lg mb-4 flex items-center"><i class="fa-regular fa-clock mr-2 text-emerald-600"></i> Available Courts & Times <span class="text-sm font-normal text-slate-500 ml-2">(60 mins per slot)</span></h3>
+                    <h3 class="font-bold text-lg mb-4 flex items-center"><i class="fa-regular fa-clock mr-2 text-blue-600"></i> Available Courts & Times <span class="text-sm font-normal text-slate-500 ml-2">(60 mins per slot)</span></h3>
                     
                     <!-- Legend -->
                     <div class="flex flex-wrap gap-3 mb-6 text-xs font-semibold">
@@ -113,7 +115,7 @@
             <div class="space-y-6">
                 <!-- Booking Summary -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-24">
-                    <h3 class="font-bold text-lg mb-4 flex items-center"><i class="fa-solid fa-receipt mr-2 text-emerald-600"></i> Booking Summary</h3>
+                    <h3 class="font-bold text-lg mb-4 flex items-center"><i class="fa-solid fa-receipt mr-2 text-blue-600"></i> Booking Summary</h3>
                     <div id="summaryContent" class="text-sm text-slate-600 mb-4 bg-slate-50 p-4 rounded-lg">
                         Please select time slots from the grid to see your summary.
                     </div>
@@ -127,22 +129,22 @@
                     <!-- Personal Info -->
                     <h4 class="font-bold text-md mb-3">Personal Information</h4>
                     <div class="space-y-3 mb-6">
-                        <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-                        <input type="tel" placeholder="Phone Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-                        <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
+                        <input type="text" placeholder="Full Name" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+                        <input type="tel" placeholder="Phone Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+                        <input type="email" placeholder="Email Address" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
                     </div>
 
                     <!-- Payment -->
                     <h4 class="font-bold text-md mb-3">Online Payment</h4>
                     <p class="text-xs text-slate-500 mb-3">Please send the exact amount via GCash and upload the receipt. (Only images accepted)</p>
-                    <div class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center mb-4 hover:bg-slate-50 transition cursor-pointer">
+                    <div class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center mb-4 hover:bg-blue-50 transition cursor-pointer">
                         <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-400 mb-2"></i>
                         <p class="text-sm text-slate-600 font-medium">Upload GCash Receipt</p>
                         <input type="file" accept="image/*" class="hidden" id="receiptUpload">
-                        <label for="receiptUpload" class="text-xs text-emerald-600 font-semibold cursor-pointer mt-1 block">Choose File</label>
+                        <label for="receiptUpload" class="text-xs text-blue-600 font-semibold cursor-pointer mt-1 block">Choose File</label>
                     </div>
 
-                    <button class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" id="submitBooking" disabled>
+                    <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" id="submitBooking" disabled>
                         Confirm Booking
                     </button>
                 </div>
@@ -151,18 +153,18 @@
     </section>
 
     <!-- Location Section -->
-    <section id="location" class="bg-slate-100 py-16 px-4">
+    <section id="location" class="bg-blue-50 py-16 px-4">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Find Us in Paradise</h2>
-                <blockquote class="text-xl text-emerald-700 italic mb-8 border-l-4 border-amber-400 pl-4">
-                    "Great games happen where great people gather. Step onto our premium courts and experience the ultimate pickleball action under the sun."
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Find Us on the Court</h2>
+                <blockquote class="text-xl text-blue-700 italic mb-8 border-l-4 border-blue-400 pl-4">
+                    "Great games happen where great people gather. Step onto our premium courts and experience the ultimate pickleball action."
                 </blockquote>
                 
                 <div class="space-y-4">
                     <div class="flex items-start">
-                        <div class="bg-emerald-100 p-3 rounded-full mr-4">
-                            <i class="fa-solid fa-location-dot text-emerald-600 text-xl"></i>
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-location-dot text-blue-600 text-xl"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-slate-800">KURTYARD Pickleball</h4>
@@ -171,8 +173,8 @@
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="bg-emerald-100 p-3 rounded-full mr-4">
-                            <i class="fa-solid fa-clock text-emerald-600 text-xl"></i>
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-clock text-blue-600 text-xl"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-slate-800">Operating Hours</h4>
@@ -180,8 +182,8 @@
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="bg-emerald-100 p-3 rounded-full mr-4">
-                            <i class="fa-solid fa-phone text-emerald-600 text-xl"></i>
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-phone text-blue-600 text-xl"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-slate-800">Contact Us</h4>
@@ -191,7 +193,7 @@
                     </div>
                 </div>
 
-                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center mt-8 text-emerald-700 font-bold hover:text-emerald-800 transition">
+                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center mt-8 text-blue-700 font-bold hover:text-blue-800 transition">
                     Get Directions <i class="fa-solid fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -213,12 +215,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-center">
+    <footer class="bg-blue-950 text-slate-400 py-8 px-4 text-center">
         <div class="max-w-7xl mx-auto">
-<div class="flex justify-center items-center mb-4">
-    <img src="kurtlogo.png" alt="KURTYARD" class="h-12 w-auto">
-</div>
-            <p class="text-sm mb-4">Premium pickleball nestled in a tropical paradise.</p>
+            <div class="flex justify-center items-center mb-4">
+                <img src="kurtlogo.png" alt="KURTYARD" class="h-12 w-auto brightness-0 invert">
+            </div>
+            <p class="text-sm mb-4">Premium pickleball courts nestled in a tropical paradise.</p>
             <div class="flex justify-center space-x-6 mb-6">
                 <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook text-xl"></i></a>
                 <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram text-xl"></i></a>
@@ -342,7 +344,7 @@
             if (e.target.files.length > 0) {
                 const label = e.target.nextElementSibling;
                 label.innerText = `Selected: ${e.target.files[0].name}`;
-                label.classList.add('text-emerald-700');
+                label.classList.add('text-blue-700');
             }
         });
 
