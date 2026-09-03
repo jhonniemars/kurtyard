@@ -171,9 +171,8 @@
                         <img src="gcash.jpeg" alt="GCash QR Code" class="w-40 h-40 object-contain">
                     </div>
                     <input type="text" placeholder="GCash Reference Number" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm mb-4">
-                    <label for="receiptUpload" class="block w-full border-2 border-dashed border-slate-300 rounded-lg p-4 text-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition">
-                        <p class="text-sm text-slate-600 font-medium">
-                        Upload GCash Receipt (Screenshot)<br> </p>
+                    <label for="receiptUpload" id="receiptLabel" class="block w-full border-2 border-dashed border-slate-300 rounded-lg p-4 text-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition">
+                        <p id="receiptFileName" class="text-sm text-slate-600 font-medium">Upload GCash Receipt (Image)</p>
                         <input type="file" accept="image/*" id="receiptUpload" class="hidden">
                     </label>
                 </div>
@@ -418,6 +417,28 @@
     // ===== PAYMENT & SUBMIT =====
 document.getElementById('submitBooking').addEventListener('click', async function () {
     const btn = document.getElementById('submitBooking');
+document.getElementById('receiptUpload').addEventListener('change', function(e) {
+    const fileNameDisplay = document.getElementById('receiptFileName');
+    const label = document.getElementById('receiptLabel');
+
+    if (e.target.files.length > 0) {
+        // Show the file name with a checkmark icon
+        fileNameDisplay.innerHTML = `<i class="fa-solid fa-check-circle text-green-500 mr-2"></i> Selected: <strong>${e.target.files[0].name}</strong>`;
+        
+        // Change border and background to green to show success
+        label.classList.remove('border-slate-300', 'bg-slate-50', 'hover:bg-slate-100');
+        label.classList.add('border-green-500', 'bg-green-50');
+        fileNameDisplay.classList.remove('text-slate-600');
+        fileNameDisplay.classList.add('text-green-700');
+    } else {
+        // Reset to default if they cancel the file selection
+        fileNameDisplay.textContent = 'Upload GCash Receipt (Image)';
+        label.classList.remove('border-green-500', 'bg-green-50');
+        label.classList.add('border-slate-300', 'bg-slate-50', 'hover:bg-slate-100');
+        fileNameDisplay.classList.remove('text-green-700');
+        fileNameDisplay.classList.add('text-slate-600');
+    }
+});
     
     // 1. Gather Data
     const fullName = document.querySelector('input[placeholder="Full Name"]').value.trim();
